@@ -1,0 +1,41 @@
+# Git
+.git
+.gitignore
+
+# Python build artifacts and caches
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+pip-wheel-metadata/
+.tox/
+.pytest_cache/
+.mypy_cache/
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs and temporary files
+*.log
+tmp/
+.temp/
+
+# Configuration and environment files
+.env
+.env.local
+.env.production
+.DS_Store
+
+# Docker specific
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Uploads and media
+uploads/

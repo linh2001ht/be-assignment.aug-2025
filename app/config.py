@@ -4,6 +4,9 @@ from typing import Optional
 
 class Settings(BaseSettings):
     # Database
+    postgres_user: str = "postgres"
+    postgres_password: str = "password"
+    postgres_db: str = "task_management"
     database_url: str = "postgresql://postgres:password@localhost:5432/task_management"
     
     # Redis

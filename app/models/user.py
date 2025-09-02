@@ -1,9 +1,8 @@
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import String, ForeignKey
 from passlib.hash import bcrypt
-from typing import List
+from app.database import Base
 from .enums import Role
-from . import Base
 from .user_project import user_project
 
 class User(Base):
@@ -14,12 +13,13 @@ class User(Base):
     hashed_password: Mapped[str] = mapped_column(String(255))
     full_name: Mapped[str] = mapped_column(String(120))
     role: Mapped[Role] = mapped_column(default=Role.MEMBER)
-    organization_id: Mapped[int] = mapped_column(ForeignKey("organizations.id", ondelete="CASCADE"), nullable=False, index=True)
+    organization_id: Mapped[int | None] = mapped_column(ForeignKey("organizations.id", ondelete="SET NULL"), index=True)
     
     organization: Mapped["Organization"] = relationship(back_populates="users")
-    projects: Mapped[List["Project"]] = relationship(secondary=user_project, back_populates="users", passive_deletes=True)
-    assigned_tasks: Mapped[List["Task"]] = relationship(back_populates="assignee")
-    notifications: Mapped[List["Notification"]] = relationship(back_populates="user")
+    projects: Mapped[list["Project"]] = relationship(secondary=user_project, back_populates="users", passive_deletes=True)
+    assigned_tasks: Mapped[list["Task"]] = relationship(back_populates="assignee")
+    comments: Mapped[list["Comment"]] = relationship(back_populates="user", cascade="all, delete-orphan")
+    notifications: Mapped[list["Notification"]] = relationship(back_populates="user", cascade="all, delete-orphan")
 
     def set_password(self, password: str):
         self.hashed_password = bcrypt.hash(password)
