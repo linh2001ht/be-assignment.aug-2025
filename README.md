@@ -2,7 +2,7 @@
 
 1.  **Clone repository**
     ```bash
-    git clone [https://github.com/linh2001ht/be-assignment.aug-2025.git](https://github.com/linh2001ht/be-assignment.aug-2025.git)
+    git clone https://github.com/linh2001ht/be-assignment.aug-2025.git
     cd be-assignment.aug-2025
     ```
 
@@ -30,7 +30,7 @@
 
 ## Cách Sử Dụng
 
-* **API Swagger UI**: `http://localhost:80/docs`.
+* **API Swagger UI**: [http://localhost:80/docs](http://localhost:80/docs).
 * Sau khi đăng ký, người dùng có thể tạo một tổ chức mới và tự động được gán vai trò **Admin** của tổ chức đó.
 * Hoặc, một **Admin** hiện có của tổ chức có thể thêm người dùng mới vào tổ chức và gán vai trò cho họ.
 
