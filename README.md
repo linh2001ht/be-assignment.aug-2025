@@ -1,3 +1,45 @@
+## ⚙️ Cài đặt
+
+1.  **Clone repository**
+    ```bash
+    git clone [https://github.com/linh2001ht/be-assignment.aug-2025.git](https://github.com/linh2001ht/be-assignment.aug-2025.git)
+    cd be-assignment.aug-2025
+    ```
+
+2.  **Cấu hình biến môi trường**
+    * Tạo file `.env` từ file mẫu `.env.example`.
+    * Điền các giá trị cần thiết như `DATABASE_URL`, `REDIS_URL`, `SECRET_KEY`, v.v.
+
+3.  **Sử dụng Docker Compose**
+    ```bash
+    docker-compose up --build -d
+    ```
+    Lệnh này sẽ build các Docker image, khởi tạo các container và chạy ứng dụng ở chế độ nền.
+
+4.  **Chạy migrations cho cơ sở dữ liệu**
+    * Kiểm tra file `alembic/env.py` của bạn. Hãy đảm bảo nó được cấu hình để đọc `DATABASE_URL` từ biến môi trường.
+    * **Tạo script migration (chỉ cần chạy lần đầu)**
+    ```bash
+    docker-compose run --rm backend alembic revision --autogenerate -m "Create all tables"
+    ```
+    * **Lưu ý**: Kiểm tra file migration mới được tạo trong thư mục `alembic/versions` trước khi áp dụng.
+    * **Áp dụng các thay đổi**
+    ```bash
+    docker-compose run --rm backend alembic upgrade head
+    ```
+
+## Cách Sử Dụng
+
+* **API Swagger UI**: `http://localhost:80/docs`.
+* Sau khi đăng ký, người dùng có thể tạo một tổ chức mới và tự động được gán vai trò **Admin** của tổ chức đó.
+* Hoặc, một **Admin** hiện có của tổ chức có thể thêm người dùng mới vào tổ chức và gán vai trò cho họ.
+
+
+
+
+
+---
+
 # 📑 Intern Backend Developer Assignment
 
 - Copyright (c) River Flow Solutions, Jsc. 2025. All rights reserved.
